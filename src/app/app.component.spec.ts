@@ -1,5 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PlotlyViaWindowModule } from 'angular-plotly.js';
 import { AppComponent } from './app.component';
+import * as PlotlyJS from 'plotly.js-dist-min';
+
+
+let fixture: ComponentFixture<AppComponent>;
+let component: AppComponent;
+window.Plotly = PlotlyJS;
+
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -7,25 +15,20 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        PlotlyViaWindowModule
+      ]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'angular-plotly-test'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-plotly-test');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-plotly-test app is running!');
+  })
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
   });
+
 });

@@ -33,7 +33,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/plotly.js-dist-min/plotly.min.js"]
           },
           "configurations": {
             "production": {
