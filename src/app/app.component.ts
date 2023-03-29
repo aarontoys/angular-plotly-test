@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PlotlyComponent } from 'angular-plotly.js';
 import { Config, PieData } from 'plotly.js';
 import { HoldersSolicited } from './holders-solicited.model';
 import { PieLayout } from './plotly-extended.interface';
@@ -35,14 +36,15 @@ export class AppComponent implements OnInit {
   public holdersSolicited!: HoldersSolicited;
   public holderChartLayout!: PieLayout;
   public chartConfig!: Partial<Config>;
+  @ViewChild('plot',{read: PlotlyComponent}) public plot?: PlotlyComponent;
 
+  constructor() {
 
-
-
+  }
   ngOnInit() {
-      this.solicitationStatus = new SolicitationStatus(solicitationDocumentJSON);
-      this.holdersSolicited = new HoldersSolicited(expectedJSONResponse);
-      this.buildChart();
+    this.solicitationStatus = new SolicitationStatus(solicitationDocumentJSON);
+    this.holdersSolicited = new HoldersSolicited(expectedJSONResponse);
+    this.buildChart();
   }
 
   private buildChart(): void {
